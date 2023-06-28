@@ -1,0 +1,24 @@
+libos.entrypoint = "{{ entrypoint }}"
+
+loader.entrypoint = "file:{{ gramine.libos }}"
+loader.log_level = "error"
+loader.insecure__use_cmdline_argv = true
+loader.env.LD_LIBRARY_PATH = "/lib:{{ arch_libdir }}:/usr/lib:/usr/{{ arch_libdir }}"
+
+sys.enable_sigterm_injection = true
+
+fs.mounts = [
+    {type = "chroot", path = "/lib", uri = "file:{{ gramine.runtimedir() }}"},
+    {path = "/etc/resolv.conf", uri = "file:/etc/resolv.conf"},
+]
+
+sgx.thread_num = 16
+sgx.nonpie_binary = true
+sgx.enclave_size = "1024M"
+
+sgx.trusted_files = [
+    "file:{{ entrypoint }}",
+    "file:{{ gramine.libos }}",
+    "file:{{ gramine.runtimedir() }}/",
+    "file:/etc/resolv.conf",
+]
