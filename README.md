@@ -1,3 +1,7 @@
+# Information
+
+This is a repository which contains a proof-of-concept implementation for the published paper called "D-GATE: Decentralized Geolocation and Time Enforcement for Usage Control" published 2023 in a IEEE European Symposium on Security and Privacy Workshop (EuroS&PW). For details please refer to our paper. 
+
 # Start instructions
 
 Start a node via:
